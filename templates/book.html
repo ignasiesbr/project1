@@ -1,0 +1,215 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ isbn }}
+{% endblock %}
+
+{% block styles %}
+.page {
+  height:80%;
+  flex-direction:column;
+  align-items: center;
+}
+
+.info-book {
+  display:flex;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 10px;
+}
+.info-book h1,
+.info-book h3,
+.info-book p {
+  margin:10px;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:flex-start;
+  width: 40%;
+  height: 500px;
+}
+
+.form-row-review {
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60%;
+
+}
+
+.form-row-review textarea{
+  height
+  padding:20px;
+  width: 80%;
+  height:60%;
+}
+.form-row select{
+  margin-bottom: 40px;
+  font-size: 16px;
+}
+.form-row button {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #5995DA;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 40px;
+  cursor: pointer;
+}
+.form-row input {
+  font-size:14px;
+  border-radius: 3px;
+  height: 30px;
+}
+
+.form-row label {
+  font-size: 16;
+  font-weight: bold;
+}
+
+.form-row button:hover {
+  background-color: #76AEED;
+}
+
+.form-row button:active {
+  background-color: #407FC7;
+}
+
+.goodreads {
+  display: flex;
+  justify-content: flex-start;
+
+  width: 100%;
+  flex-direction: column;
+  margin-left: 40px;
+  padding-left: 40px;
+  margin-bottom: 40px;
+
+}
+.goodreads h1 {
+  padding-bottom: 20px;
+  margin-bottom: 15px;
+}
+
+.goodreads p {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.user-reviews-container {
+  width: 100%;
+  margin-left: 40px;
+  padding-left: 40px;
+}
+
+.user-reviews-container h1 {
+  font-style: normal;
+  padding-bottom: 20px;
+}
+
+.review-item {
+  margin-bottom: 10px;
+}
+
+.review-item h3{
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.review-item p {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.review-item .user-rating{
+  font-size: 20px;
+  font-weight: bold;
+  color: #000059;
+}
+
+.back-home:visited,
+.back-home:not-visited a {
+  font-color: #5995DA;
+}
+
+{% endblock %}
+
+{% block body %}
+
+
+    <header class="info-book">
+        <h1>{{ title }}</h1>
+        <h3>By: {{ author }}</h3>
+        <p>
+            Year: {{ year }}
+            ISBN: {{ isbn }}
+        </p>
+        <hr/>
+    </header>
+
+    <form class="review-form" action="" method="post">
+      <div class="form-row-review">
+      <!--  <label for="review">Review</label>  -->
+        <textarea name="review" id="comment" ></textarea>
+        <div class="instructions">
+          Post a review!
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="rating">Rate this book: </label>
+        <select name="rating" id="rating" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <button>Submit review</button>
+      </div>
+    </form>
+
+    <div class="back-home">
+      <a href="{{ url_for('login') }}">Back to search menu</a>
+    </div>
+
+    <div class="goodreads">
+      {% if avgGoodReads %}
+      <h1>GoodReads ratings  </h1>
+      <p>Number of ratings: {{ nratingsGoodReads }}</p>
+      <p>Average score: {{ avgGoodReads }}</p>
+      {% endif %}
+    </div>
+
+    {% if reviews %}
+    <div class="user-reviews-container">
+      <h1>User reviews </h1>
+      {% for review in reviews %}
+      <div class="review-item">
+        <h3>{{ review['username'] }} said...</h3>
+        <p>{{ review['review'] }}</p>
+        <div class="user-rating">
+          Score: {{ review['rating'] }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+
+
+
+
+
+
+
+{% endblock %}

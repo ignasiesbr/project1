@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block styles %}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.results-container h1 {
+  margin: 0 auto;
+  color: #5995DA;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.results-container li {
+  list-style-type: none;
+}
+
+.result-item {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.result-link {
+  text-decoration: none;
+  border: 2px solid #000000;
+  padding: 5px;
+  border-radius: 3px;
+  margin-bottom: 5px;
+
+}
+.results-container a{
+  color: #000000;
+}
+
+.page {
+  height: 80%;
+}
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="results-container">
+      <h1>Results</h1>
+      {% for book in books %}
+          <li class="result-item">
+             <a class="result-link" href="{{ url_for('book', book_id=book.id)}}">
+              {{ book.title }}, {{ book.author }}</a>
+          </li>
+      {% endfor %}
+    </div>
+
+{% endblock %}

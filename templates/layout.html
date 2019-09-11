@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>
+      {% block title %}
+      {% endblock %}
+    </title>
+    <style>
+          * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* HEADER */
+
+    .header-container {
+      color: #fff;
+      background-color: #5995DA;
+      padding: 20px 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .header {
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .top-page-element{
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    /* FOOTER */
+    .footer-container {
+    color: #fff;
+    background-color: #5995DA;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    height:100px;
+    }
+
+    .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .footer-element {
+    font-size: 25px;
+    font-weight: bold;
+    }
+
+    .page {
+      height: 550px;
+      padding: 20px 0;
+      display: flex;
+      justify-content: center;
+      background-color: #dcf1f5;
+    }
+
+        {% block styles %}
+
+        {% endblock %}
+
+    </style>
+
+  </head>
+
+  <body>
+
+    <header class="header-container">
+      <div class="header">
+        <div class="top-page-element">
+          Project1, Books CS50
+        </div>
+        <div class="top-page-element">
+          By Ignasi Espinosa
+        </div>
+      </div>
+    </header>
+
+    <div class="page">
+    {% block body %}
+    {% endblock %}
+<!--    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+    {% endwith %} -->
+  </div>
+
+    <footer class="footer-container">
+      <div class="footer">
+        <div class="footer-element">
+          CS-50 Web Development using Python and Javascript
+        </div>
+      </div>
+    </footer>
+
+
+  </body>
+</html>

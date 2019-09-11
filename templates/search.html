@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Search
+{% endblock %}
+
+{% block styles %}
+
+.search-container {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.search-header {
+  padding: 30px 30px 0px 30px;
+  margin-bottom: 40px;
+  color: #5995DA;
+}
+
+.search-form {
+  display: flex;
+  height: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.search-form input {
+  border: 2px solid #000000;
+  border-radius: 5px;
+  margin-bottom: 60px;
+  font-size: 20px;
+  height: 50px;
+}
+.search-form button {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #5995DA;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 40px;
+  cursor: pointer;
+  width: 60%;
+}
+
+.search-container .logout-link {
+  font-size: 20px;
+  text-decoration: none;
+  font-style: normal;
+  font-weight: bold;
+  color: #5995DA;
+}
+
+{% endblock %}
+
+
+
+{% block body %}
+
+    <div class="search-container">
+      <header class="search-header">
+        <h1>Search</h1>
+      </header>
+      <form action=" {{ url_for('results') }}" method="post" class="search-form">
+        <div class="form-row">
+          <input type="text" name="search-text" placeholder="        Enter your search" required>
+        </div>
+        <button>Search</button>
+      </form>
+
+      <a class="logout-link" href="{{ url_for('logout') }}">Log out</a>
+    </div>
+
+{% endblock %}

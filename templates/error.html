@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Fail
+{% endblock %}
+
+{% block styles %}
+.problem {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
+.problem p {
+  margin-bottom: 30px;
+}
+
+{% endblock %}
+
+{% block body %}
+
+  <div class="problem">
+     <p>There's been a problem</p>
+     <a href="{{ url_for ('login') }}">Return to lobby</a>
+  </div>
+
+
+{% endblock %}
